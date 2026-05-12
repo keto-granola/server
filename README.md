@@ -7,7 +7,7 @@ Go server for keto granola e-commerce platform using Echo for HTTP routing, Post
 ## Development
 
 ### Prerequisite files:
-- 
+- .env
 
 ### Setup:
 ```

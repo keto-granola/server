@@ -48,7 +48,7 @@ func New(ctx context.Context, deps Dependencies, cfg *config.App) *Server {
 		AllowOrigins: []string{cfg.ClientURL},
 	}))
 
-	// TODO: implement middleware
+	// TODO: implement logging middleware
 	// instance.Use(middleware.Log)
 
 	// limits each unique IP to 60 requests per minute with a burst of 120.
@@ -65,9 +65,9 @@ func New(ctx context.Context, deps Dependencies, cfg *config.App) *Server {
 	)
 
 	if cfg.Environment == config.EnvironmentTest {
-		// run test middleware
+		// TODO: run test middleware
 	} else {
-		// run auth middleware
+		// TODO: run auth middleware
 	}
 
 	public := instance.Group("")
