@@ -19,10 +19,10 @@ type CreateProductRequest struct {
 }
 
 func (h *Handler) CreateProduct(ctx context.Context, req CreateProductRequest) (*product.Product, error) {
-	product, err := h.service.CreateProduct(ctx, req)
+	prod, err := h.service.CreateProduct(ctx, req)
 	if err != nil {
 		return nil, err
 	}
 
-	return product, nil
+	return prod, nil
 }
