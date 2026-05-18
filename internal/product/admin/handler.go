@@ -1,9 +1,9 @@
 package admin
 
 import (
-	"net/http"
+	"context"
 
-	"github.com/labstack/echo/v4"
+	"github.com/keto-granola/server/internal/product"
 )
 
 type Handler struct {
@@ -18,15 +18,11 @@ type CreateProductRequest struct {
 	Name string `json:"name" validate:"required"`
 }
 
-func (h *Handler) CreateProduct(e echo.Context) error {
-	ctx := e.Request().Context()
-
-	var req CreateProductRequest
-
+func (h *Handler) CreateProduct(ctx context.Context, req CreateProductRequest) (*product.Product, error) {
 	product, err := h.service.CreateProduct(ctx, req)
 	if err != nil {
-		return echo.NewHTTPError(http.StatusInternalServerError, "error creating new product").SetInternal(err)
+		return nil, err
 	}
 
-	return e.JSON(http.StatusCreated, product)
+	return product, nil
 }
