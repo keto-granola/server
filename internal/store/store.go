@@ -18,7 +18,7 @@ import (
 const (
 	dbMaxRetries = 5
 	dbBaseDelay  = 100 * time.Millisecond
-	pingTimeout    = 5 * time.Second
+	pingTimeout  = 5 * time.Second
 )
 
 type Store struct {
