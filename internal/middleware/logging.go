@@ -11,8 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/keto-granola/server/internal/config"
 	"github.com/labstack/echo/v4"
+
+	"github.com/keto-granola/server/internal/config"
 )
 
 func Log(next echo.HandlerFunc) echo.HandlerFunc {
