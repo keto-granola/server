@@ -10,6 +10,14 @@ import (
 	"github.com/joho/godotenv"
 )
 
+const (
+	EnvironmentDevelopment Environment = "development"
+	EnvironmentProduction  Environment = "production"
+	EnvironmentTest        Environment = "test"
+
+	APIVersion = "v1"
+)
+
 type App struct {
 	Port        string
 	ClientURL   string
@@ -19,12 +27,6 @@ type App struct {
 }
 
 type Environment string
-
-const (
-	EnvironmentDevelopment Environment = "development"
-	EnvironmentProduction  Environment = "production"
-	EnvironmentTest        Environment = "test"
-)
 
 var validEnvironments = []Environment{
 	EnvironmentDevelopment,

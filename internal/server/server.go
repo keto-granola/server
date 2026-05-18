@@ -11,6 +11,7 @@ import (
 	echoMiddleware "github.com/labstack/echo/v4/middleware"
 
 	"github.com/keto-granola/server/internal/config"
+	"github.com/keto-granola/server/internal/middleware"
 	productadmin "github.com/keto-granola/server/internal/product/admin"
 	"github.com/keto-granola/server/internal/store"
 )
@@ -49,8 +50,7 @@ func New(ctx context.Context, environment config.Environment, clientURL string, 
 		AllowOrigins: []string{clientURL},
 	}))
 
-	// TODO: implement logging middleware
-	// instance.Use(middleware.Log)
+	instance.Use(middleware.Log)
 
 	// limits each unique IP to 60 requests per minute with a burst of 120.
 	instance.Use(echoMiddleware.RateLimiter(echoMiddleware.NewRateLimiterMemoryStoreWithConfig(
@@ -69,8 +69,8 @@ func New(ctx context.Context, environment config.Environment, clientURL string, 
 		slog.Info("run auth middleware")
 	}
 
-	public := instance.Group("")
-	private := instance.Group("")
+	public := instance.Group("/" + config.APIVersion)
+	private := instance.Group("/" + config.APIVersion)
 
 	registerRoutes(public, private, handlers, dataStore)
 
