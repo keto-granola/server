@@ -64,7 +64,6 @@ func run() error {
 }
 
 func composeHandlers(db *store.Store) *server.Handlers {
-
 	productStore := productstore.New(db.Queries)
 
 	return &server.Handlers{
