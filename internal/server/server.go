@@ -30,7 +30,6 @@ const (
 
 type Server struct {
 	instance *echo.Echo
-	store       *store.Store
 }
 
 type Handlers struct {
@@ -41,7 +40,7 @@ type customValidator struct {
 	validator *validator.Validate
 }
 
-func New(ctx context.Context, environment config.Environment, clientURL string, handlers *Handlers, store *store.Store) *Server {
+func New(ctx context.Context, environment config.Environment, clientURL string, handlers *Handlers, dataStore *store.Store) *Server {
 	instance := echo.New()
 	instance.Validator = &customValidator{validator: validator.New()}
 	instance.HideBanner = true // Prevents startup banner from being logged
@@ -73,7 +72,7 @@ func New(ctx context.Context, environment config.Environment, clientURL string, 
 	public := instance.Group("")
 	private := instance.Group("")
 
-	registerRoutes(public, private, handlers, store)
+	registerRoutes(public, private, handlers, dataStore)
 
 	instance.Server.ReadTimeout = readTimeout
 	instance.Server.WriteTimeout = writeTimeout
