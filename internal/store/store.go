@@ -51,6 +51,10 @@ func New(ctx context.Context, dbUrl string) (*Store, error) {
 	}, nil
 }
 
+func (s *Store) PingDB(ctx context.Context) error {
+	return s.pool.Ping(ctx)
+}
+
 func (s *Store) Close() {
 	s.pool.Close()
 }

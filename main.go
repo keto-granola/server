@@ -42,7 +42,7 @@ func run() error {
 	}
 	defer dataStore.Close()
 
-	instance := server.New(ctx, cfg.Environment, cfg.ClientURL, composeHandlers(dataStore))
+	instance := server.New(ctx, cfg.Environment, cfg.ClientURL, composeHandlers(dataStore), dataStore)
 
 	serverErr := make(chan error, 1)
 
